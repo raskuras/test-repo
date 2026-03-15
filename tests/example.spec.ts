@@ -12,3 +12,14 @@ test(
     await expect(page).toHaveTitle("Try Playwright");
   },
 );
+
+test(
+  'should load and display Try Playwright page',
+  { tag: ['@smoke', '@page', '@load'] },
+  async ({ page }) => {
+    await page.goto('/');
+    // Sprawdź, czy strona jest załadowana i widoczna
+    await expect(page).toHaveTitle(/Try Playwright/i);
+    await expect(page.locator('body')).toBeVisible();
+  }
+);
